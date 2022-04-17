@@ -19,12 +19,12 @@ const App = () => {
 
 
   const [cls, setCls] = useState("close")
-  const [men, setMen] = useState("-65%")
+  const [men, setMen] = useState("-350px")
   const [aa, setaa] = useState('dis')
   const [bb, setbb] = useState('dis')
   const [cc, setcc] = useState('dis')
-  const [lgq, setlgq] = useState('full')
-  const [fav, setfav] = useState('full1')
+  const [lgq, setlgq] = useState('logoQr')
+  const [fav, setfav] = useState('logoCir')
 
 
   const home = () => {
@@ -32,8 +32,8 @@ const App = () => {
     setbb('dis');
     setcc('dis');
     setfu('dis');
-    setlgq('full');
-    setfav('full1');
+    setlgq('logoQr');
+    setfav('logoCir');
   }
   const funb = () => {
     if (cls === "close") {
@@ -44,17 +44,17 @@ const App = () => {
 
   const funbb = () => {
 
-    if (men == "-65%") {
+    if (men == "-350px") {
       setMen("0%");
     }
     else {
-      setMen("-65%")
+      setMen("-350px")
     }
   }
 
   const touch = () => {
     if (men == "0%") {
-      setMen("-65%");
+      setMen("-350px");
       if (cls === "open") {
         setCls("close")
       }
@@ -71,7 +71,7 @@ const App = () => {
       setlgq('dim');
       setfav('dim1');
       if (men == "0%") {
-        setMen("-65%");
+        setMen("-350px");
       }
       if (cls === "open") {
         setCls("close")
@@ -90,7 +90,7 @@ const App = () => {
       setfav('dim1');
 
       if (men == "0%") {
-        setMen("-65%");
+        setMen("-350px");
       }
       if (cls === "open") {
         setCls("close")
@@ -109,7 +109,7 @@ const App = () => {
       setfav('dim1');
 
       if (men == "0%") {
-        setMen("-65%");
+        setMen("-350px");
       }
       if (cls === "open") {
         setCls("close")
@@ -186,12 +186,12 @@ const App = () => {
         </div>
       </nav>
 
-      <div id="logoQR" className={`${lgq}`}>
+      <div className={`${lgq}`}>
 
 
 
 
-        <div id='logoCir' className={`${fav}`}><img id='im' src={logo} alt="" /></div>
+        <div className={`${fav}`}><img id='im' src={logo} alt="" /></div>
 
         <div id='homeQR'>
           <a href="https://wa.me/917041142889?text=I%20want%20to%20know%20more%20about%20funds11"><img id='qr' src={qr} alt="" /></a>
