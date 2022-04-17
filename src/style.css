@@ -398,7 +398,7 @@ tr:nth-child(even) {
 }
 
 .slider {
-  width: 65%;
+  width: 350px;
   height: 100vh;
   top:0px;
   left: 0;
@@ -565,62 +565,57 @@ tr:nth-child(even) {
   color: black;
   font-weight: bolder;
 }
-.full{
-  width: 80vw;
-}
-.dim{
-  width: 0%;
-  opacity: 0;
-  
-}
-.full1{
-  width: 12vw;
-  height: 12vw;
-}
-.dim1{
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-#logoQR{
-  display: block;
 
+.dim{
+  display: none;
+}
+
+.dim1{
+  display: none;
+}
+.logoQR{
+  display: block;
   margin: auto;
   margin-top: 20px;
+  transition: 0.8s ;
+  position: absolute;
   transition: 0.8s ;
 }
 #homeQR{
   position: relative;
   top: 0px;
   border-radius: 15px;
-  width: 100%;
-  padding-top: 100%;
+  width: 400px;
+  height: 400px;
+  /* padding-top: 100%; */
   background-color: #ffffff;
   display: block;
   margin: auto;
 }
-#logoCir{
+.logoCir{
+  width: 60px;
+  height: 60px;
   background-color:#ffffff;
-  border: 1vw gainsboro solid;
+  border: 5px gainsboro solid;
   border-radius: 50%;
   position: relative;
   display: block;
   margin: auto;
   transition: 0.8s ;
   z-index: 3;
-  margin-bottom: -7vw;
+  margin-bottom: -33px;
 } 
 #im{
   width: 100%;
 }
 
 #qr{
-  position: absolute;
+  position: relative;
   display: block;
   margin-left:10%;
- 
-  margin-top: -85%;
- 
+ margin: auto;
+  /* margin-top: -85%; */
+ top: 40px;
   width: 80%;
 
 }
