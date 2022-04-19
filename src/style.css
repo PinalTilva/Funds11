@@ -50,7 +50,6 @@ button:hover {
   font-weight: normal;
 }
 
-input,
 #sel {
   box-sizing: border-box;
   box-shadow: -5px -5px 5px #fdfdfd4d,
@@ -69,7 +68,6 @@ input,
   color: rgb(2, 100, 100);
 }
 
-input:hover,
 #sel:hover {
   background-color: #fdfdfdda;
   box-shadow: -5px -5px 5px rgba(160, 161, 160, 0.205),
@@ -159,26 +157,6 @@ tr:nth-child(even) {
 }
 .ddis {
   display: inline-block;
-}
-
-.selmem {
-  box-sizing: border-box;
-  display: block;
-  border-radius: 10px;
-  width: 90%;
-  padding: 15px 29px;
-  align-items: center;
-  margin: auto;
-  background-color: #dae6d9da;
-  font-size: 15px;
-  line-height: 25px;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-  text-shadow: -1px -1px 1px rgba(158, 157, 157, 0.8),
-    1px 1px 1px rgba(157, 157, 158, 0.3);
-
-  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.8) inset,
-    5px 5px 5px rgba(174, 174, 192, 0.3) inset;
 }
 
 .column{
@@ -553,7 +531,7 @@ tr:nth-child(even) {
   color: black;
   font-weight: bold;
   border-radius: 10px;
-  padding: 2vw;
+  padding: 1vw;
   margin-top: 10px;
   margin-bottom: 0;
   background-color: #ffffff;

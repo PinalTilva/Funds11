@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 
-import Detai from '../Months/Aapi';
+import {Detai} from '../Months/Aapi';
 import Runninglogs from './Runninglogs';
 
 const Running = () => {

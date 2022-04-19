@@ -2,17 +2,14 @@ import '../style.css';
 
 import React, { useState } from 'react';
 
-import Activity from './Activity';
-import Detai from '../Months/Aapi';
+import Activity1 from './Activity1';
+import {Detai} from '../Months/Aapi';
 
-const Activities = () => {
-
-
+const Activity = () => {
 
     const [years, setyears] = useState([])
     const newDeta = [];
     const func = () => {
-
         newDeta.push(Detai.filter((elem) => {
             return elem.year.slice(0, 4) == "2020"
         }))
@@ -22,25 +19,15 @@ const Activities = () => {
         newDeta.push(Detai.filter((elem) => {
             return elem.year.slice(0, 4) == "2022"
         }))
-
         setyears(newDeta);
     }
-
-
-
-
-
-
     return (
         <>
             <br></br>
             <br></br>
-
-            <Activity yearS={years} fun={func} />
-
-
+            <Activity1 yearS={years} fun={func} />
         </>
     )
 }
 
-export default Activities
+export default Activity;

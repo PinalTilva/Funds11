@@ -1,4 +1,4 @@
-const Detai = [{
+export const Detai = [{
     "year": "2020-12",
     "loanAmount": 0,
     "dateStart": "",
@@ -186,13 +186,49 @@ const Detai = [{
     "interestKunj": 50,
     'interestPriyal': 200,
     'interestVivek': 100,
+},{
+    "year": "2022-04",
+    "loanAmount": 0,
+    "dateStart": "",
+    "dateEnd": "",
+    "interestDhaval": 300,
+    "interestKunj": 50,
+    'interestPriyal': 200,
+    'interestVivek': 100,
 }];
 
 
+export const memeberList = [ 
+    "Kunj",
+    "Vivek",
+    "Pinal",
+    "Jayen",
+    "Priyal",
+    "Brijesh",
+    "Karan",
+    "Krunal",
+    "Dhaval",
+    "Jeet",
+    "Kelvin"
+];
 
+export const months = [
+    "", 
+    "January", 
+    "February", 
+    "March", 
+    "April", 
+    "May", 
+    "June", 
+    "July", 
+    "August", 
+    "September", 
+    "October", 
+    "November", 
+    "December"
+];
 
 
         
     
 
-export default Detai;
