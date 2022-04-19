@@ -2,7 +2,7 @@ import '../style.css';
 
 import React, { useState } from 'react';
 
-import Detai from '../Months/Aapi';
+import {Detai} from '../Months/Aapi';
 
 const Runninglogs = () => {
 
