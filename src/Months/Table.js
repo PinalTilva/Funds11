@@ -1,5 +1,5 @@
 import React from 'react'
-import { memeberList } from './Aapi';
+import { memberList } from './Aapi';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Box from '@mui/material/Box';
 
@@ -27,7 +27,7 @@ const Table = ({ det, tab, fun }) => {
                                                 <td>D<sup>e</sup></td>
                                             </tr>
                                             {
-                                                memeberList.map((member) => {
+                                                memberList.map((member) => {
                                                     let lm = "loanAmount" + `${member}`
                                                     let ds = "dateStart" + `${member}`
                                                     let de = "dateEnd" + `${member}`
