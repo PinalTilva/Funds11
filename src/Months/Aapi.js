@@ -198,7 +198,7 @@ export const Detai = [{
 }];
 
 
-export const memeberList = [ 
+export const memberList = [ 
     "Kunj",
     "Vivek",
     "Pinal",

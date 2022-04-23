@@ -6,25 +6,27 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Detai, memeberList } from '../Months/Aapi.js';
+import { Detai, memberList } from '../Months/Aapi.js';
 import { Button, Card } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { SettingsOverscanOutlined } from '@mui/icons-material';
 const Member = (prop) => {
   const [first, setfirst] = useState('dis');
   const [name, setName] = useState('0');
+  const [total, settotal] = useState(0)
   const func = () => {
-    if (first === 'dis') {
+    if (!memberList.includes(name)) {
+      alert("Please select member")
+    } else if (first === 'dis') {
       setfirst('diss');
     }
   }
-  const funCan = () => {
+  const setDisplay = () => {
     setfirst('dis');
   }
-  const [age, setAge] = React.useState('');
   const handleChange = (event) => {
-    setAge(event.target.value);
-    console.log(event.target.value);
+    setName(event.target.value);
   };
   let loan = 0;
   let int = 0;
@@ -41,25 +43,19 @@ const Member = (prop) => {
       int += (Detai[i][conInt]);
     }
   }
-  let ban;
-  const filterMem = () => {
-    setName(document.getElementById('demo-simple-select').innerText);
-  };
-  const fill = () => {
-    const ghj = document.getElementById('demo-simple-select').innerText;
-    const Memb = ghj.split("\n");
-    let totall = 0;
-    for (let j = 1; j < Memb.length; j++) {
-      const conName = "interest" + Memb[j];
+  const calInt = () => {
+    let total = 0;
+    memberList.forEach((member) => {
       for (let i = 0; i < Detai.length; i++) {
-        if (Detai[i][conName] !== undefined) {
-          totall += (Detai[i][conName]);
+        if (Detai[i]["interest" + member] !== undefined) {
+          total += (Detai[i]["interest" + member]);
         }
       }
-    }
-    localStorage.setItem("ball", totall);
+    })
+    settotal(total)
   }
-  ban = localStorage.getItem("ball");
+  
+
   const card = (
     <React.Fragment>
       <CardContent>
@@ -74,7 +70,7 @@ const Member = (prop) => {
           Total Interest Paid : {int}
         </Typography>
         <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
-          Total Balance : {(500 * Detai.length) + parseInt(ban / 11)}
+          Total Balance : {(500 * Detai.length) + parseInt(total / 11)}
         </Typography>
       </CardContent>
     </React.Fragment>
@@ -89,16 +85,15 @@ const Member = (prop) => {
       <div className="diss">
         <Box sx={{ maxWidth: 280 }} style={{ display: "block", margin: "auto" }}>
           <FormControl fullWidth size='small'>
-            <InputLabel id="demo-simple-select-label" style={{ fontWeight: "bold", color:"white" }}>Member</InputLabel>
+            <InputLabel id="demo-simple-select-label" style={{ fontWeight: "bold", color: "white" }}>Member</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={age}
               label="Member"
               onChange={handleChange}
               style={{ color: "black", backgroundColor: "gray", borderRadius: "15px" }}
             >
-              {memeberList.map((member) => {
+              {memberList.map((member) => {
                 return (
                   <MenuItem value={member}>{member}</MenuItem>
                 )
@@ -108,11 +103,15 @@ const Member = (prop) => {
         </Box>
       </div>
       <br></br>
-      <Button style={{ display: "block", margin: "auto" }} variant="contained" onClick={() => { func(); filterMem(); fill() }}>Get Data</Button>
+      <Button style={{ display: "block", margin: "auto" }} variant="contained" onClick={() => { func(); calInt() }}>Get Data</Button>
       <br></br>
       <div className={`${first}`} id='divMem'>
         <Box style={{ maxWidth: 480, margin: "auto" }}>
-          <CancelIcon style={{ color: "red" }} onClick={funCan} />
+          <CancelIcon
+            fontSize='large'
+            style={{ color: "red", position: "relative", left: "90%" }}
+            onClick={setDisplay}
+          />
           <Card variant='filled'>{card}</Card>
         </Box>
       </div>

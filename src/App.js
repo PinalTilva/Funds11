@@ -3,11 +3,12 @@ import './styleM.css';
 import React, { useState } from 'react';
 import $ from 'jquery';
 import Member from './Members/Members';
-import Months from './Months/indexMonths';
-import Running from './Running/Running';
+import Months from './Months';
+import Running from './Running';
+
 import logo from './favv.png'
 import qr from './qrcode.png'
-import Activity from './Activities/indexActivity';
+import Activity from './Activities';
 
 const App = () => {
   
@@ -158,7 +159,7 @@ const App = () => {
           <div className={`${aa}`}><Months /></div>
           <div className={`${bb}`}><Member deff='Select' /></div>
           <div className={`${cc}`}><Activity /></div>
-          <div className={`${fu}`}><Running /></div>
+          <div className={`${fu}`}><Running/></div>
           <br></br>
         </div>
       </div>

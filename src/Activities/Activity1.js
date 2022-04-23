@@ -1,6 +1,6 @@
 import '../style.css';
 import React from 'react';
-import { memeberList, months } from '../Months/Aapi';
+import { memberList, months } from '../Months/Aapi';
 import { Card, Box } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -33,7 +33,7 @@ const Activity1 = ({ yearS, fun }) => {
                                                             <Card style={{ display: "flex", flexWrap: "wrap" }} variant='filled'>
                                                                 {el.loanAmount == "0" ? <div style={{ margin: 'auto' }}>"No Loan was taken!"</div> : null}
                                                                 {
-                                                                    memeberList.map((member) => {
+                                                                    memberList.map((member) => {
                                                                         let lm = "loanAmount" + `${member}`
                                                                         let ds = "dateStart" + `${member}`
                                                                         let es = "dateEnd" + `${member}`
