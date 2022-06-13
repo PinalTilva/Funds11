@@ -1,111 +1,48 @@
 import './style.css';
 import './styleM.css';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import React, { useState } from 'react';
 import $ from 'jquery';
 import Member from './Members/Members';
 import Months from './Months';
 import Running from './Running';
-
-import logo from './favv.png'
-import qr from './qrcode.png'
+import Home from './Home';
 import Activity from './Activities';
+import { Menu, MenuItem } from '@mui/material';
+import { MenuOutlined, AccountCircleRounded } from '@mui/icons-material';
+import Admin from './Admin/admin';
+import Updates from './Update/updates';
+
 
 const App = () => {
-  
-  const [cls, setCls] = useState("close")
-  const [men, setMen] = useState("-350px")
-  const [aa, setaa] = useState('dis')
-  const [bb, setbb] = useState('dis')
-  const [cc, setcc] = useState('dis')
-  const [lgq, setlgq] = useState('logoQr')
-  const [fav, setfav] = useState('logoCir')
-  const home = () => {
-    setaa('dis');
-    setbb('dis');
-    setcc('dis');
-    setfu('dis');
-    setlgq('logoQr');
-    setfav('logoCir');
-  }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [loggeD, setloggeD] = useState(false)
+  const [cls, setCls] = useState("inline-block")
+  const [men, setMen] = useState("-310px")
+  const [data, setdata] = useState([]);
+  const [open1, setopen1] = useState(false);
+  const openn = Boolean(anchorEl);
   const funb = () => {
-    if (cls === "close") {
-      setCls("open");
+    if (cls === "inline-block") {
+      setCls("none");
     }
   }
   const funbb = () => {
-    if (men == "-350px") {
+    if (men == "-310px") {
       setMen("0%");
     }
     else {
-      setMen("-350px")
+      setMen("-310px")
     }
   }
   const touch = () => {
     if (men == "0%") {
-      setMen("-350px");
-      if (cls === "open") {
-        setCls("close")
+      setMen("-310px");
+      if (cls === "none") {
+        setCls("inline-block")
       }
     }
-  }
-  const funA = () => {
-    if (aa == 'dis') {
-      setaa('diss');
-      setbb('dis');
-      setcc('dis');
-      setfu('dis');
-      setlgq('dim');
-      setfav('dim1');
-      if (men == "0%") {
-        setMen("-350px");
-      }
-      if (cls === "open") {
-        setCls("close")
-      }
-    }
-  }
-  const funB = () => {
-
-    if (bb == 'dis') {
-      setbb('diss');
-      setaa('dis');
-      setcc('dis');
-      setfu('dis');
-      setlgq('dim');
-      setfav('dim1');
-
-      if (men == "0%") {
-        setMen("-350px");
-      }
-      if (cls === "open") {
-        setCls("close")
-      }
-    }
-  }
-  const funC = () => {
-    if (cc == 'dis') {
-      setcc('diss');
-      setaa('dis');
-      setbb('dis');
-      setfu('dis');
-      setlgq('dim');
-      setfav('dim1');
-      if (men == "0%") {
-        setMen("-350px");
-      }
-      if (cls === "open") {
-        setCls("close")
-      }
-    }
-  }
-  const [fu, setfu] = useState("dis")
-  const funcs = () => {
-    setfu("diss");
-    setaa('dis');
-    setbb('dis');
-    setcc('dis');
-    setlgq('dim');
-    setfav('dim1');
   }
   $(window).scroll(() => {
     let ass = 50 - ($(window).scrollTop() / 2) / 2;
@@ -118,51 +55,136 @@ const App = () => {
       $('#logo').attr('style', '');
     }
   })
+
+  const callB = async() => {
+    await fetch('/get', {
+      method: 'get'
+    }).then((response) => {
+      response.json().then((dataa) => setdata([...dataa]));
+    }).catch((err) => {
+      console.log('err', err);
+    });
+  };
+
+  React.useEffect( callB, []);
+
+  React.useEffect(() => {
+    let code = localStorage.getItem("code");
+    code && setloggeD(true);
+  },[]);
+
+  const callBack = (props) => {
+    setloggeD(props.first);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setopen1(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    < >
-      <header id='NavDiv'>
-        <nav id="navBar">
-          {/* <img src='./gaphy.gif' onClick={() => { funcs() }} /> */}
+    <>
+      <Router>
+        <header id='NavDiv'>
+          <MenuOutlined
+            id="nav-icon"
+            onClick={() => { funb(); funbb() }}
+            style={{ display: cls }}
+          />
+          {
+            !loggeD ?
+              <Link to={'/login'}>
+                <AccountCircleRounded
+                  style={{
+                    float: 'right',
+                    fontSize: 35,
+                    position: 'relative',
+                    top: 13,
+                    right: 13,
+                    cursor: 'pointer',
+                    color: 'white',
+                  }}
+                />
+              </Link> : <>
+                <AccountCircleRounded
+                  onClick={handleClick}
+                  id='user'
+                  style={{
+                    float: 'right',
+                    fontSize: 35,
+                    position: 'relative',
+                    top: 13,
+                    right: 13,
+                    cursor: 'pointer',
+                    color: 'black',
+                  }}
+                />
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open1 && openn}
+                  onClose={handleClose}
+                >
+                  <Link style={{ textDecoration: 'none' }} to={'/update'}><MenuItem onClick={() => setopen1(false)}>Add Loans</MenuItem></Link>
+                  <Link style={{ textDecoration: 'none' }} to={'/'}><MenuItem onClick={() => { setloggeD(false); setopen1(false); localStorage.clear() }}>Logout</MenuItem></Link>
+                </Menu>
+              </>
+          }
+
+        </header>
+        <br></br>
+        <div id="logo" >
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <p style={{ color: 'wheat' }}>Funds11</p>
+          </Link>
+        </div>
+        <nav>
+          <div className='slider' id='sliderL' style={{ left: `${men}` }} onClick={() => { touch() }}>
+            <br></br>
+            <br></br>
+            <br></br>
+            <li>
+              <Link to={'/months'} className='sliDiv'>
+                <i className='material-icons'>event</i>
+                Monthly Statement
+              </Link>
+            </li>
+            <li>
+              <Link to={'/member'} className='sliDiv'>
+                <i className='material-icons'>people</i>
+                Member Details
+              </Link>
+            </li>
+            <li>
+              <Link to={'/activities'} className='sliDiv'>
+                <i className='material-icons'>history</i>
+                Activities
+              </Link>
+            </li>
+            <li>
+              <Link to={'/running_loans'} className='sliDiv'>
+                <i className='material-icons'>paid</i>
+                Running Loans
+              </Link>
+            </li>
+            <a href='https://github.com/PinalTilva/Funds11' className='sliDiv' target={'_blank'}><i className='material-icons'>code</i> Get Code</a>
+          </div>
         </nav>
-      </header>
-      <div id="nav-icon3" onClick={() => { funb(); funbb() }} className={`${cls}`}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <br></br>
-      <div id="logo" >
-      <p style={{ color: 'wheat' }} onClick={() => { home() }}>Funds11</p>
-      </div>
-      <nav>
-        <div className='slider' id='sliderL' style={{ left: `${men}` }} onClick={() => { touch() }}>
-          <br></br><br></br>
-          <br></br>
-          <a href='#' className='sliDiv sliDiv--active' onClick={() => { funA() }}><i className='material-icons'>event</i> Monthly Statement</a>
-          <a href='#' className='sliDiv sliDiv--active' onClick={() => { funB() }}><i className='material-icons'>people</i> Member Details</a>
-          <a href='#' className='sliDiv sliDiv--active' onClick={() => { funC() }}><i className='material-icons'>history</i> Activities</a>
-          <a href='#' className='sliDiv sliDiv--active' onClick={() => { funcs() }}><i className='material-icons'>paid</i> Running Loans</a>
-          <a href='https://github.com/PinalTilva/Funds11' className='sliDiv' target={'_blank'}><i className='material-icons'>code</i> Get Code</a>
-        </div>
-        <div className="overlay">
-        </div>
-      </nav>
-      <div className={`${lgq}`}>
-        <div className={`${fav}`}><img id='im' src={logo} alt="" /></div>
-        <div id='homeQR'>
-          <a href="https://wa.me/917041142889?text=I%20want%20to%20know%20more%20about%20funds11"><img id='qr' src={qr} alt="" /></a>
-        </div>
-      </div>
-          <br></br>
-      <div id='divMain'>
-        <div id='div22'>
-          <div className={`${aa}`}><Months /></div>
-          <div className={`${bb}`}><Member deff='Select' /></div>
-          <div className={`${cc}`}><Activity /></div>
-          <div className={`${fu}`}><Running/></div>
-          <br></br>
-        </div>
-      </div>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {loggeD && <Route path='/update' element={<Updates data={data}/>} />}
+          <Route path='/login' element={<Admin callback={callBack} loggeD={loggeD}/>} />
+          <Route path='/months' element={<Months data={data} loggeD={loggeD}/>} />
+          <Route path='/member' element={<Member data={data} loggeD={loggeD}/>} />
+          <Route path='/activities' element={<Activity data={data}/>} />
+          <Route path='/running_loans' element={<Running logged={loggeD} data={data}/>} />
+        </Routes>
+
+      </Router>
     </>
   )
 }

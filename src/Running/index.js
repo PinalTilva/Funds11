@@ -1,13 +1,12 @@
 import React from 'react'
 import Runninglogs from './Runninglogs';
-const Running = () => {
+const Running = ({logged, data}) => {
     return (
         <>
             <br></br>
             <br></br>
-            <div ><Runninglogs/></div>
+            <Runninglogs logged={logged} data={data}/>
         </>
     )
 }
-
 export default Running;
